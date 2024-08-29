@@ -73,7 +73,7 @@ public class RadioTest {
 
     @Test // тест на выставление радиостанций
     public void useRadio() {
-        Radio radio = new Radio(0, 9);
+        Radio radio = new Radio(9);
         Assertions.assertEquals(0, radio.getMinRadiostation());
         Assertions.assertEquals(9, radio.getMaxRadiostation());
         Assertions.assertEquals(0, radio.getNumberOfCurrentRadiostaion());
