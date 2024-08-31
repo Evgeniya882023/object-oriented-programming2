@@ -3,6 +3,7 @@ import org.junit.jupiter.api.Test;
 import ru.netology.Radio;
 
 public class RadioTest {
+
     @Test //тест переключение вперед
     public void testNextNumber() {
         Radio radio = new Radio();
@@ -46,10 +47,8 @@ public class RadioTest {
     @Test // клиент имеет возможность выставлять номер станции через указание ее номера
     public void testGiveNumber() {
         Radio radio = new Radio();
-        radio.setCurrentNumberRadioStation(2);
-        int expected = 2;
-        int actual = radio.getNumberOfCurrentRadiostaion();
-        Assertions.assertEquals(expected, actual);
+        radio.setCurrentNumberRadioStation(1);
+        Assertions.assertEquals(1, radio.getNumberOfCurrentRadiostaion());
     }
 
     @Test //Номер текущей радиостанции может принимать значения только в пределах от 0 до 9
@@ -68,6 +67,41 @@ public class RadioTest {
         radio.setCurrentNumberRadioStation(-1);
         radio.prevNumber();
         int expected = 9;
+        int actual = radio.getNumberOfCurrentRadiostaion();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test // тест на выставление радиостанций
+    public void useRadio() {
+        Radio radio = new Radio(9);
+        Assertions.assertEquals(0, radio.getMinRadiostation());
+        Assertions.assertEquals(8, radio.getMaxRadiostation());
+        Assertions.assertEquals(0, radio.getNumberOfCurrentRadiostaion());
+    }
+
+    @Test //тест на выставление максимальной радиостанции
+    public void setToMaxRadiostation() {
+        Radio radio = new Radio();
+        radio.setCurrentNumberRadioStation(9);
+        int expected = 9;
+        int actual = radio.getNumberOfCurrentRadiostaion();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test //тест на выставление минимальной радиостанции
+    public void setToMinRadiostation() {
+        Radio radio = new Radio();
+        radio.setCurrentNumberRadioStation(0);
+        int expected = 0;
+        int actual = radio.getMinRadiostation();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test //Тест на невозможность выставить 15 радиостанцию в радио из 20 каналов
+    public void testImpossibleAfterMax() {
+        Radio radio = new Radio(20);
+        radio.setCurrentNumberRadioStation(15);
+        int expected = 15;
         int actual = radio.getNumberOfCurrentRadiostaion();
         Assertions.assertEquals(expected, actual);
     }
