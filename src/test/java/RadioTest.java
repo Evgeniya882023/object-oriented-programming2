@@ -79,7 +79,7 @@ public class RadioTest {
         Assertions.assertEquals(0, radio.getNumberOfCurrentRadiostaion());
     }
 
-    @Test //тест на выставлениеминимальной радиостанции
+    @Test //тест на выставление максимальной радиостанции
     public void setToMaxRadiostation() {
         Radio radio = new Radio();
         radio.setCurrentNumberRadioStation(9);
@@ -88,12 +88,20 @@ public class RadioTest {
         Assertions.assertEquals(expected, actual);
     }
 
-    @Test
+    @Test //тест на выставление минимальной радиостанции
     public void setToMinRadiostation() {
         Radio radio = new Radio();
         radio.setCurrentNumberRadioStation(0);
         int expected = 0;
         int actual = radio.getMinRadiostation();
+        Assertions.assertEquals(expected, actual);
+    }
+    @Test //Тест на невозможность выставить 15 радиостанцию в радио из 20 каналов
+    public void testImpossibleAfterMax(){
+        Radio radio = new Radio(20);
+        radio.setCurrentNumberRadioStation(15);
+        int expected = 15;
+        int actual = radio.getNumberOfCurrentRadiostaion();
         Assertions.assertEquals(expected, actual);
     }
 
